@@ -41,6 +41,23 @@ This repo uses [Commitizen CLI][commitizen] and [Conventional Changelog][convent
 
 Run `npm run release` to create a new release. This will use [Standard Version][standard-version] to create a new release. [Standard Version][standard-version] will generate / update the changelog based on commits generated using [Commitizen CLI][commitizen], update the version number following semantic versioning rules and then commit and tag the commit for the release. Simply run `git push --follow-tags origin master`.
 
+## Docker
+
+To build a Docker image locally run first build the client and server bundles as well as the express app by running `npm run build:ssr`. Then to build the image run:
+
+```
+docker build -t angular-native-seed:latest .
+```
+
+To run the docker image simply do:
+
+```
+docker run -d -p 4000:4000 angular-native-seed:latest
+```
+
+Navigate to `http://localhost:4000/` to view the server side rendered version of the app running in a Docker image
+
+
 
 ## Further help
 
