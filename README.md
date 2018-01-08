@@ -18,6 +18,13 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
+## Server side rendering
+
+The site can be rendered on a server before serving pages to the client. Server side rendering is achieved using [Express][express] and [Angular Universal][angular-universal] with [Express][express] running a [node][nodejs] server and [@nguniversal/express-engine][@nguniversal] providing a template engine for [Express][express] to render the angular pages.
+
+Run `npm run build:ssr && npm run serve:ssr` to build client and server bundles and run an express app which will render the angular templates before being sent to the client. Navigate to `http://localhost:4000/` to view the SSR version of the app.
+
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma][karma].
@@ -51,3 +58,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 [Protractor]:http://www.protractortest.org/
 [angular-cli]:https://github.com/angular/angular-cli
 [angular-cli-readme]:https://github.com/angular/angular-cli/blob/master/README.md
+[express]:https://expressjs.com/
+[angular-universal]:https://github.com/angular/universal
+[@nguniversal]:https://github.com/angular/universal/tree/master/modules/express-engine
+[nodejs]:https://nodejs.org/en/
+
