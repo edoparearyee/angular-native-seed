@@ -25,6 +25,15 @@ The site can be rendered on a server before serving pages to the client. Server 
 Run `npm run build:ssr && npm run serve:ssr` to build client and server bundles and run an express app which will render the angular templates before being sent to the client. Navigate to `http://localhost:4000/` to view the SSR version of the app.
 
 
+## Native iOS and Android Apps
+
+This project uses [Nativescript][nativescript] to create Android and iOS app version of the application using the same code and logic from `component|directive|pipes|services` etc... but with different template files and logic. A [Nativescript Cli][nativescript] project is location in the `/nativescript` folder and follows the same structure as the nativescript cli so it's possible to run any of the nativescript cli commands.
+
+The files for the angular application are symlink using the `symlink.js` file from `src/app` to `nativescript/app/app`. Any files with `.tns` in the filename is renamed in the symlink to remove the `.tns` and it's non-`.tns` file is not symlinked. So for example `src/app/app.component.tns.html` is symlined to `nativescript/app/app/app.component.html` but `src/app/app.component.html` (the web version of the file) is NOT. This allows files for the web such as html and scss files to be replaced but the nativescript version in the `nativescript` folder.
+
+To run the nativescript app simply run `npm run start:ios` or `npm run start:android`. This command will run the symlink command before launch the application using the nativescript cli.
+
+
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma][karma].
@@ -79,4 +88,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 [angular-universal]:https://github.com/angular/universal
 [@nguniversal]:https://github.com/angular/universal/tree/master/modules/express-engine
 [nodejs]:https://nodejs.org/en/
+[nativescript]:https://www.nativescript.org/
 

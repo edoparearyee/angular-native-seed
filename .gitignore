@@ -40,3 +40,14 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# NativeScript
+/nativescript/node_modules
+/nativescript/platforms
+/nativescript/*.js.map
+/nativescript/app/**/*.js
+/nativescript/hooks/
+/nativescript/lib/
+/nativescript/tmp/
+/nativescript/typings/
+/nativescript/report/

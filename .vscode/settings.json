@@ -1,0 +1,17 @@
+{
+  "files.exclude": {
+    "nativescript/app/**/*.js": true
+  },
+  "files.watcherExclude": {
+    "node_modules/**": true,
+    "nativescript/node_modules/**": true,
+    "nativescript/platforms": true,
+    "nativescript/hooks": true,
+    "nativescript/app/App_Resources": true
+  },
+  "search.exclude": {
+    "nativescript/platforms": true,
+    "nativescript/node_modules": true,
+    "nativescript/hooks": true
+  }
+}
