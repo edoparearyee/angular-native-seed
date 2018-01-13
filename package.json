@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
+  "main": "main.js",
+  "files": [
+
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -21,6 +25,12 @@
     "serve:ssr": "node dist/server.js",
     "build:client-and-server-bundles": "ng build --prod && ng build --prod --app ssr --output-hashing false",
     "webpack:server": "webpack --config webpack.server.js --progress --colors",
+    "prestart:desktop": "npm run build",
+    "start:desktop": "electron .",
+    "prebuild:desktop:win": "npm run build",
+    "build:desktop:win": "electron-packager . --platform win32 --out ./build",
+    "prebuild:desktop:mac": "npm run build",
+    "build:desktop:mac": "electron-packager . --platform darwin --out ./build",
     "symlink": "node symlink.js",
     "release": "standard-version"
   },
@@ -54,6 +64,8 @@
     "codelyzer": "^4.0.1",
     "coveralls": "^3.0.0",
     "cz-conventional-changelog": "^2.1.0",
+    "electron": "^1.7.10",
+    "electron-packager": "^10.1.1",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",

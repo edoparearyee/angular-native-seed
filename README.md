@@ -25,6 +25,13 @@ The site can be rendered on a server before serving pages to the client. Server 
 Run `npm run build:ssr && npm run serve:ssr` to build client and server bundles and run an express app which will render the angular templates before being sent to the client. Navigate to `http://localhost:4000/` to view the SSR version of the app.
 
 
+## Native desktop app
+
+The Native desktop app is built using [Electron][electron]. To view the desktop app simply run `npm run start:desktop` this will build the browser web bundle and run the Electron app using the build artifacts.
+
+To create an executable for windows run `npm run build:desktop:win` or for mac run `npm run build:desktop:mac`. These artifacts will be located in the `/build` directory.
+
+
 ## Native iOS and Android Apps
 
 This project uses [Nativescript][nativescript] to create Android and iOS app version of the application using the same code and logic from `component|directive|pipes|services` etc... but with different template files and logic. A [Nativescript Cli][nativescript] project is location in the `/nativescript` folder and follows the same structure as the nativescript cli so it's possible to run any of the nativescript cli commands.
@@ -89,4 +96,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 [@nguniversal]:https://github.com/angular/universal/tree/master/modules/express-engine
 [nodejs]:https://nodejs.org/en/
 [nativescript]:https://www.nativescript.org/
+[electron]:https://electronjs.org/
 

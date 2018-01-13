@@ -4,12 +4,14 @@
   },
   "files.watcherExclude": {
     "node_modules/**": true,
+    "build/**": true,
     "nativescript/node_modules/**": true,
     "nativescript/platforms": true,
     "nativescript/hooks": true,
     "nativescript/app/App_Resources": true
   },
   "search.exclude": {
+    "build/**": true,
     "nativescript/platforms": true,
     "nativescript/node_modules": true,
     "nativescript/hooks": true
