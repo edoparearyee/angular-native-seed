@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  padding: .5rem 0;
+}
+
+.text {
+  margin: 0 1rem;
+
+  &.completed {
+    text-decoration: line-through;
+  }
+}
+

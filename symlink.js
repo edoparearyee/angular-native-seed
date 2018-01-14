@@ -65,6 +65,9 @@
         if (file.includes('.tns.')) {
           newFileName = file.split('.tns.').join('.');
         }
+        if (file.includes('.native.')) {
+          newFileName = file.split('.native.').join('.');
+        }
         console.log(`linking: ${webAppPath}/${file} -> ${nativescriptAppPath}/${newFileName}`);
         fs.symlinkSync(`${webAppPath}/${file}`, `${nativescriptAppPath}/${newFileName}`, 'junction');
       });
