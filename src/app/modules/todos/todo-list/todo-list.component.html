@@ -5,6 +5,7 @@
     type="text"
     [value]="formInput$ | async"
     (input)="onInputChange($event.target.value)"
+    autocomplete="false"
     autofocus
     required>
   <button type="submit">Add</button>

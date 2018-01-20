@@ -1,7 +1,7 @@
 import { State, Action } from '@ngrx/store';
 
-import { Todo, TodosState } from '@app/todos/shared';
-import { TodosAction, TodosActionTypes } from '@app/todos/store/actions';
+import { Todo, TodosState } from '../../shared';
+import { TodosAction, TodosActionTypes } from '../actions';
 
 const initialState: TodosState = {
   incrementId: 0,
@@ -11,7 +11,7 @@ const initialState: TodosState = {
 };
 
 const newState = (state, newData) => {
-  return { ...state, ...newData };
+  return Object.assign({}, state, newData);
 };
 
 export function todosReducer(
@@ -21,14 +21,14 @@ export function todosReducer(
 
   switch (action.type) {
     case TodosActionTypes.add: {
-      const item = Object.assign({}, action.payload, { id: state.incrementId });
+      const item = newState(action.payload, { id: state.incrementId });
       const items = [...state.items, item];
       return newState(state, { incrementId: state.incrementId + 1, items });
     }
 
     case TodosActionTypes.edit: {
       const idx = state.items.findIndex(item => item.id === action.payload.id);
-      const updatedItem: Todo = {...state.items[idx], text: action.payload.text };
+      const updatedItem: Todo = newState(state.items[idx], { text: action.payload.text });
       const items = [...state.items];
       items.splice(idx, 1, updatedItem);
       return newState(state, { items, lastEdited: action.payload.id });
@@ -44,7 +44,7 @@ export function todosReducer(
     case TodosActionTypes.completeSet: {
       const idx = state.items.findIndex(item => item.id === action.payload);
       const items = [...state.items];
-      const updatedItem = { ...state.items[idx], completed: true };
+      const updatedItem = newState(state.items[idx], { completed: true });
       items.splice(idx, 1, updatedItem);
       return newState(state, { items });
     }
@@ -52,7 +52,7 @@ export function todosReducer(
     case TodosActionTypes.completeUnset: {
       const idx = state.items.findIndex(item => item.id === action.payload);
       const items = [...state.items];
-      const updatedItem = { ...state.items[idx], completed: false };
+      const updatedItem = newState(state.items[idx], { completed: false });
       items.splice(idx, 1, updatedItem);
       return newState(state, { items });
     }
@@ -64,6 +64,10 @@ export function todosReducer(
 
     case TodosActionTypes.formInputReset: {
       return newState(state, { formInput: '' });
+    }
+
+    case TodosActionTypes.lastEditedReset: {
+      return newState(state, { lastEdited: null });
     }
 
     default: {

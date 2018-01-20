@@ -1,0 +1,15 @@
+<StackLayout>
+  <app-todo *ngFor="let todo of todos$ | async" [todo]="todo"></app-todo>
+  <FlexboxLayout flexDirection="row">
+    <TextField
+      [text]="formInput$ | async"
+      (textChange)="onInputChange($event.object.text)"
+      hint="Add todo"
+      autocorrect="false"
+      autocapitalizationType="none"
+      class="input"
+      flexGrow="10">
+    </TextField>
+    <Button text="Add" (tap)="add()" class="btn btn-primary btn-lime" flexGrow="1" [disabled]="(formInput$ | async).length === 0"></Button>
+  </FlexboxLayout>
+</StackLayout>

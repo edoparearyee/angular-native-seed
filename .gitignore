@@ -47,8 +47,12 @@ Thumbs.db
 /nativescript/platforms
 /nativescript/*.js.map
 /nativescript/app/**/*.js
+/nativescript/app/app
+/nativescript/app/environments
+/nativescript/app/assets
 /nativescript/hooks/
 /nativescript/lib/
 /nativescript/tmp/
 /nativescript/typings/
 /nativescript/report/
+/src/**/*.js

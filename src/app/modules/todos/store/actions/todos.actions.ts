@@ -1,15 +1,16 @@
 import { Action } from '@ngrx/store';
 
-import { Todo } from '@app/todos/shared';
+import { Todo } from '../../shared';
 
 export enum TodosActionTypes {
   add =                       '[Todos] Add',
   edit =                      '[Todos] Edit',
+  delete =                    '[Todos] Delete',
   completeSet =               '[Todos] Complete Set',
   completeUnset =             '[Todos] Complete Unset',
-  delete =                    '[Todos] Delete',
   formInputSet =              '[Todos] Form Input Set',
-  formInputReset =            '[Todos] Form Input Reset'
+  formInputReset =            '[Todos] Form Input Reset',
+  lastEditedReset =           '[Todos] Last Edited Reset'
 }
 
 export class TodosAdd implements Action {
@@ -52,6 +53,10 @@ export class TodosFormInputReset implements Action {
   readonly type = TodosActionTypes.formInputReset;
 }
 
+export class TodosLastEditedReset implements Action {
+  readonly type = TodosActionTypes.lastEditedReset;
+}
+
 export type TodosAction =
   | TodosAdd
   | TodosEdit
@@ -59,4 +64,5 @@ export type TodosAction =
   | TodosCompleteSet
   | TodosCompleteUnset
   | TodosFormInputSet
-  | TodosFormInputReset;
+  | TodosFormInputReset
+  | TodosLastEditedReset;

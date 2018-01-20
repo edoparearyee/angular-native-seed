@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TodosModule } from '@app/todos/todos.module';
+import { TodosModule } from '../modules/todos/todos.module';
 import { HomeRoutingModule, routedComponents } from './home-routing.module';
 
 @NgModule({

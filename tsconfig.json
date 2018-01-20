@@ -14,14 +14,7 @@
     "lib": [
       "es2017",
       "dom"
-    ],
-    "baseUrl": "src",
-    "paths": {
-      "@app/*": ["app/*"],
-      "@app/environment": ["environments/environment"],
-      "@app/home/*": ["app/home/*"],
-      "@app/todos/*": ["app/modules/todos/*"]
-    }
+    ]
   },
   "exclude": [
     "nativescript/**"

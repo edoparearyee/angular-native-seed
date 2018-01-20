@@ -1,0 +1,17 @@
+<FlexboxLayout flexDirection="row">
+  <CheckBox [checked]="todo.completed" (checkedChange)="toggleComplete()" flexGrow="1"></CheckBox>
+
+  <TextField
+    #inputText
+    [text]="todo.text"
+    (textChange)="edit($event.object.text)"
+    [ngClass]="{ 'text-muted': todo.completed }"
+    [editable]="!todo.completed"
+    autocorrect="false"
+    autocapitalizationType="none"
+    class="input"
+    flexGrow="100">
+  </TextField>
+
+  <Button class="btn btn-primary btn-ruby" (tap)="delete()" text="Delete" flexGrow="1"></Button>
+</FlexboxLayout>

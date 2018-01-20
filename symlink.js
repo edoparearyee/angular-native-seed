@@ -1,81 +1,118 @@
 // @ts-check
+
+/**
+ * Symlink
+ *
+ * Creates symlinks for all files in `src/app` to `nativescript/app/app`
+ * and renames symlinks for `*.tns.*` files by removing the `.tns` in the
+ * symlink's filename and removes the original non `tns` symlink file.
+ * So eventually the `tns` symlink overrides it's non `tns` equivalent.
+ *
+ * Inspired by {@link https://github.com/TeamMaestro/angular-native-seed/blob/master/symlink.js}
+ */
 (function() {
   'use strict';
 
   const fs = require('fs');
   const path = require('path');
+  const mkdirRecursive = require('mkdir-recursive');
+  const fsReaddirRecursive = require('fs-readdir-recursive');
 
   const webAppPath = path.join(__dirname, 'src/app');
+  const webEnvPath = path.join(__dirname, 'src/environments');
   const webAssetsPath = path.join(__dirname, 'src/assets');
   const nativescriptAppPath = path.join(__dirname, 'nativescript/app/app');
+  const nativescriptEnvPath = path.join(__dirname, 'nativescript/app/environments');
   const nativescriptAssetsPath = path.join(__dirname, 'nativescript/app/assets');
+
+  const debug = false;
 
   console.log('Setting up symlinks...');
 
   // remove previous symlinks if they exist
   removeSymLinks();
 
-  // Try to create symlinks
-  createSymLink();
-
+  console.log('Symlinks created successfully!');
   return 0;
 
-  function createSymLink() {
-    console.log(`linking files in: ${webAppPath} -> ${nativescriptAppPath}`);
-
-    fs.exists(nativescriptAppPath, (exists) => {
-      if (!exists) {
-        fs.mkdir(nativescriptAppPath, () => createLinks());
-      } else {
-        createLinks();
-      }
-    });
-  }
 
   function removeSymLinks() {
-    fs.exists(nativescriptAppPath, function(exists) {
-      fs.readdir(nativescriptAppPath, function(err, items) {
-        items.forEach(item => {
-          if (fs.existsSync(`${nativescriptAppPath}/${item}`)) {
-            console.log(`Removing link: ${nativescriptAppPath}/${item}`);
-            fs.unlinkSync(`${nativescriptAppPath}/${item}`);
-          }
-        });
-      });
+
+    const items = fsReaddirRecursive(nativescriptAppPath);
+    items.forEach(item => {
+      if (fs.existsSync(`${nativescriptAppPath}/${item}`)) {
+        if (debug) console.log(`Removing link: ${nativescriptAppPath}/${item}`);
+        fs.unlinkSync(`${nativescriptAppPath}/${item}`);
+      }
     });
 
     if (fs.existsSync(nativescriptAssetsPath)) {
-      console.log(`Removing link: ${webAssetsPath} -> ${nativescriptAssetsPath}`);
+      if (debug) console.log(`Removing link: ${webAssetsPath} -> ${nativescriptAssetsPath}`);
       fs.unlinkSync(nativescriptAssetsPath);
     }
+    if (fs.existsSync(nativescriptEnvPath)) {
+      if (debug) console.log(`Removing link: ${webEnvPath} -> ${nativescriptEnvPath}`);
+      fs.unlinkSync(nativescriptEnvPath);
+    }
+
+    // Try to create symlinks
+    createSymLink();
   }
 
-  function createLinks() {
-    fs.readdir(webAppPath, function (err, items) {
-      const tnsFiles = items
-        .filter(file => !file.includes('.browser.') && !file.includes('.server.') && !file.includes('.spec.'))
-        .filter((file, i, files) => {
-          const fileNameSplit = file.split('.');
-          fileNameSplit.splice(fileNameSplit.length - 1, 0, 'tns');
-          return files.indexOf(fileNameSplit.join('.')) === -1;
-        });
+  function createSymLink() {
+    if (debug) console.log(`linking files in: ${webAppPath} -> ${nativescriptAppPath}`);
+
+    const items = fsReaddirRecursive(webAppPath)
+      .filter(item => !item.includes('.browser.') && !item.includes('.server.'));
+
+    const linkItem = (i) => {
+      const item = items[i];
+      const dirArr = `${nativescriptAppPath}/${item}`.split('/');
+      dirArr.pop();
+      const dir = dirArr.join('/');
+
+      const createLink = () => {
+        if (debug) console.log(`linking: ${webAppPath}/${item} --> ${nativescriptAppPath}/${item}`);
+        fs.symlinkSync(`${webAppPath}/${item}`, `${nativescriptAppPath}/${item}`, 'junction');
+        items[i + 1] ? linkItem(i + 1) : renameTnsFiles();
+      };
+
+      fs.exists(dir, function(exists) {
+        if (!exists) {
+          if (debug) console.log(`making directory: ${dir}`);
+          mkdirRecursive.mkdir(dir, null, () => createLink());
+        } else {
+          createLink();
+        }
+      });
+    };
+
+    const renameTnsFiles = () => {
+      const nsItems = fsReaddirRecursive(nativescriptAppPath);
+      const tnsFiles = nsItems.filter(file => file.includes('.tns.'))
 
       tnsFiles.forEach(file => {
-        let newFileName = file;
-        if (file.includes('.tns.')) {
-          newFileName = file.split('.tns.').join('.');
+        const fullPath = `${nativescriptAppPath}/${file}`;
+        const newFileNameArr = fullPath.split('.tns.');
+        const newFileName = newFileNameArr.join('.');
+        if (fs.existsSync(newFileName)) {
+          fs.unlinkSync(newFileName);
         }
-        if (file.includes('.native.')) {
-          newFileName = file.split('.native.').join('.');
-        }
-        console.log(`linking: ${webAppPath}/${file} -> ${nativescriptAppPath}/${newFileName}`);
-        fs.symlinkSync(`${webAppPath}/${file}`, `${nativescriptAppPath}/${newFileName}`, 'junction');
+        fs.renameSync(fullPath, newFileName);
       });
-    });
 
-    if (!fs.existsSync(nativescriptAssetsPath)) {
-      console.log(`linking: ${webAssetsPath} -> ${nativescriptAssetsPath}`);
-      fs.symlinkSync(webAssetsPath, nativescriptAssetsPath, 'junction');
+      if (!fs.existsSync(nativescriptAssetsPath)) {
+        if (debug) console.log(`linking: ${webAssetsPath} -> ${nativescriptAssetsPath}`);
+        fs.symlinkSync(webAssetsPath, nativescriptAssetsPath, 'junction');
+      }
+      if (!fs.existsSync(nativescriptEnvPath)) {
+        if (debug) console.log(`linking: ${webEnvPath} -> ${nativescriptEnvPath}`);
+        fs.symlinkSync(webEnvPath, nativescriptEnvPath, 'junction');
+      }
     }
-  }
+
+    linkItem(0);
+
+  };
+
 })();

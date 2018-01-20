@@ -7,8 +7,8 @@ describe('angular-native-seed App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should have router outlet', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getRouterOutlet().isPresent()).toBeTruthy();
   });
 });

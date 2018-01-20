@@ -6,6 +6,8 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "nativescript/app/**/*.js": true,
+    "nativescript/app/App_Resources/**": true,
+    "src/app/**/*.js": true,
     "build/**/*.app/**": true
   },
   "files.watcherExclude": {

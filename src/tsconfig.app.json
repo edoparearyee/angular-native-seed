@@ -12,6 +12,7 @@
   "exclude": [
     "test.ts",
     "**/*.tns.*",
+    "**/*.native.*",
     "**/*.spec.ts"
   ]
 }

@@ -6,5 +6,6 @@
   [value]="todo.text"
   (input)="edit($event.target.value)"
   [ngClass]="{ 'completed': todo.completed }"
-  [disabled]="todo.completed">
+  [disabled]="todo.completed"
+  autocomplete="false">
 <button type="button" (click)="delete()">Delete</button>

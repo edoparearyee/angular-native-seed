@@ -1,4 +1,4 @@
-import { Todo } from '@app/todos/shared';
+import { Todo } from './todo.model';
 
 export interface TodosState {
   incrementId: number;

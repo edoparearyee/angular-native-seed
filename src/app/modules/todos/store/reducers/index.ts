@@ -1,6 +1,6 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
-import { TodosState } from '@app/todos/shared';
+import { TodosState } from '../../shared';
 import { todosReducer, getTodoItems, getTodosFormInput, getTodosLastEdited } from './todos.reducer';
 
 export const reducers = todosReducer;

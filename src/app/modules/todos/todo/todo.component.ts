@@ -1,20 +1,23 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component, AfterViewInit, Input,
+  ViewChild, ElementRef, ChangeDetectionStrategy
+} from '@angular/core';
 import { Store } from '@ngrx/store';
-import { take, filter } from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 
-import { Todo, TodosState } from '@app/todos/shared';
-import { TodosActionTypes, getTodosLastEditedState } from '@app/todos/store';
+import { Todo, TodosState } from '../shared';
+import { TodosActionTypes, getTodosLastEditedState } from '../store';
 
 @Component({
   moduleId: module.id,
   selector: 'app-todo',
   templateUrl: 'todo.component.html',
-  styleUrls: [ 'todo.component.scss' ]
+  styleUrls: [ 'todo.component.scss' ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent implements AfterViewInit {
   /**
    * Todo item to display
-   *
    * @type {Todo}
    * @memberof TodoComponent
    */
@@ -22,7 +25,6 @@ export class TodoComponent implements OnInit {
   public todo: Todo;
   /**
    * Reference to input element in component template
-   *
    * @type {ElementRef}
    * @memberof TodoComponent
    */
@@ -35,26 +37,27 @@ export class TodoComponent implements OnInit {
    */
   constructor(public store: Store<TodosState>) { }
   /**
-   * Because we are creating a new state on any changes to the state
-   * if this todo is being currently being edited the component will
-   * be re-rendered and the user will lose focus as a new component is
-   * created to reflected the updated state. So we store the id of the
-   * last edited todo so when the todo component is re-rendered we focus
-   * on the text input element
-   *
+   * Because we are creating a new state on all changes if this todo
+   * is being currently being edited the component will be re-rendered
+   * and the user will lose focus as a new component is created to
+   * reflected the updated state. So we store the id of the last edited
+   * todo so when the todo component is re-rendered we focus on the text
+   * input element
    * @memberof TodoComponent
    */
-  public ngOnInit(): void {
+  public ngAfterViewInit(): void {
     this.store.select(getTodosLastEditedState)
       .pipe(
         take(1),
         filter(id => this.todo.id === id)
       )
-      .subscribe(() => this.inputText.nativeElement.focus());
+      .subscribe((id) => {
+        this.store.dispatch({ type: TodosActionTypes.lastEditedReset });
+        this.inputText.nativeElement.focus();
+      });
   }
   /**
    * Mark todo as complete
-   *
    * @memberof TodoComponent
    */
   public toggleComplete(): void {
@@ -64,15 +67,15 @@ export class TodoComponent implements OnInit {
   }
   /**
    * Edit todo item
-   *
    * @memberof TodoComponent
    */
   public edit(value): void {
-    this.store.dispatch({ type: TodosActionTypes.edit, payload: { id: this.todo.id, text: value } });
+    if (value !== this.todo.text) {
+      this.store.dispatch({ type: TodosActionTypes.edit, payload: { id: this.todo.id, text: value } });
+    }
   }
   /**
    * Delete todo item
-   *
    * @memberof TodoComponent
    */
   public delete(): void {
