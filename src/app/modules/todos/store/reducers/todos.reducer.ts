@@ -3,7 +3,7 @@ import { State, Action } from '@ngrx/store';
 import { Todo, TodosState } from '../../shared';
 import { TodosAction, TodosActionTypes } from '../actions';
 
-const initialState: TodosState = {
+export const initialState: TodosState = {
   incrementId: 0,
   formInput: '',
   lastEdited: null,
