@@ -3,6 +3,7 @@
 [![CircleCI][circleci-badge]][circleci]
 [![Coverage Status][coveralls-badge]][coveralls]
 [![Commitizen friendly][commitizen-badge]][commitizen]
+[![code style: prettier][prettier-badge]][prettier]
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 
@@ -24,13 +25,11 @@ The site can be rendered on a server before serving pages to the client. Server 
 
 Run `npm run build:ssr && npm run serve:ssr` to build client and server bundles and run an express app which will render the angular templates before being sent to the client. Navigate to `http://localhost:4000/` to view the SSR version of the app.
 
-
 ## Native desktop app
 
 The Native desktop app is built using [Electron][electron]. To view the desktop app simply run `npm run start:desktop` this will build the browser web bundle and run the Electron app using the build artifacts.
 
 To create an executable for windows run `npm run build:desktop:win` or for mac run `npm run build:desktop:mac`. These artifacts will be located in the `/build` directory.
-
 
 ## Native iOS and Android Apps
 
@@ -39,7 +38,6 @@ This project uses [Nativescript][nativescript] to create Android and iOS app ver
 The files for the angular application are symlink using the `symlink.js` file from `src/app` to `nativescript/app/app`. Any files with `.tns` in the filename is renamed in the symlink to remove the `.tns` and it's non-`.tns` file is not symlinked. So for example `src/app/app.component.tns.html` is symlined to `nativescript/app/app/app.component.html` but `src/app/app.component.html` (the web version of the file) is NOT. This allows files for the web such as html and scss files to be replaced but the nativescript version in the `nativescript` folder.
 
 To run the nativescript app simply run `npm run start:ios` or `npm run start:android`. This command will run the symlink command before launch the application using the nativescript cli.
-
 
 ## Running unit tests
 
@@ -73,28 +71,27 @@ docker run -d -p 4000:4000 angular-native-seed:latest
 
 Navigate to `http://localhost:4000/` to view the server side rendered version of the app running in a Docker image
 
-
-
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README][angular-cli-readme].
 
-[circleci]:https://circleci.com/gh/edoparearyee/angular-native-seed
-[circleci-badge]:https://circleci.com/gh/edoparearyee/angular-native-seed.svg?style=shield
-[coveralls]:https://coveralls.io/github/edoparearyee/angular-native-seed?branch=master
-[coveralls-badge]:https://coveralls.io/repos/github/edoparearyee/angular-native-seed/badge.svg?branch=master
-[commitizen]:http://commitizen.github.io/cz-cli/
-[commitizen-badge]:https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
-[conventional-changelog]:https://github.com/conventional-changelog/conventional-changelog
-[standard-version]:https://github.com/conventional-changelog/standard-version
-[Karma]:https://karma-runner.github.io
-[Protractor]:http://www.protractortest.org/
-[angular-cli]:https://github.com/angular/angular-cli
-[angular-cli-readme]:https://github.com/angular/angular-cli/blob/master/README.md
-[express]:https://expressjs.com/
-[angular-universal]:https://github.com/angular/universal
-[@nguniversal]:https://github.com/angular/universal/tree/master/modules/express-engine
-[nodejs]:https://nodejs.org/en/
-[nativescript]:https://www.nativescript.org/
-[electron]:https://electronjs.org/
-
+[circleci]: https://circleci.com/gh/edoparearyee/angular-native-seed
+[circleci-badge]: https://circleci.com/gh/edoparearyee/angular-native-seed.svg?style=shield
+[coveralls]: https://coveralls.io/github/edoparearyee/angular-native-seed?branch=master
+[coveralls-badge]: https://coveralls.io/repos/github/edoparearyee/angular-native-seed/badge.svg?branch=master
+[commitizen]: http://commitizen.github.io/cz-cli/
+[commitizen-badge]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
+[conventional-changelog]: https://github.com/conventional-changelog/conventional-changelog
+[standard-version]: https://github.com/conventional-changelog/standard-version
+[karma]: https://karma-runner.github.io
+[protractor]: http://www.protractortest.org/
+[angular-cli]: https://github.com/angular/angular-cli
+[angular-cli-readme]: https://github.com/angular/angular-cli/blob/master/README.md
+[express]: https://expressjs.com/
+[angular-universal]: https://github.com/angular/universal
+[@nguniversal]: https://github.com/angular/universal/tree/master/modules/express-engine
+[nodejs]: https://nodejs.org/en/
+[nativescript]: https://www.nativescript.org/
+[electron]: https://electronjs.org/
+[prettier-badge]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=badge
+[prettier]: https://github.com/prettier/prettier

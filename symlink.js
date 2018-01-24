@@ -22,8 +22,14 @@
   const webEnvPath = path.join(__dirname, 'src/environments');
   const webAssetsPath = path.join(__dirname, 'src/assets');
   const nativescriptAppPath = path.join(__dirname, 'nativescript/app/app');
-  const nativescriptEnvPath = path.join(__dirname, 'nativescript/app/environments');
-  const nativescriptAssetsPath = path.join(__dirname, 'nativescript/app/assets');
+  const nativescriptEnvPath = path.join(
+    __dirname,
+    'nativescript/app/environments'
+  );
+  const nativescriptAssetsPath = path.join(
+    __dirname,
+    'nativescript/app/assets'
+  );
 
   const debug = false;
 
@@ -35,9 +41,7 @@
   console.log('Symlinks created successfully!');
   return 0;
 
-
   function removeSymLinks() {
-
     const items = fsReaddirRecursive(nativescriptAppPath);
     items.forEach(item => {
       if (fs.existsSync(`${nativescriptAppPath}/${item}`)) {
@@ -47,11 +51,15 @@
     });
 
     if (fs.existsSync(nativescriptAssetsPath)) {
-      if (debug) console.log(`Removing link: ${webAssetsPath} -> ${nativescriptAssetsPath}`);
+      if (debug)
+        console.log(
+          `Removing link: ${webAssetsPath} -> ${nativescriptAssetsPath}`
+        );
       fs.unlinkSync(nativescriptAssetsPath);
     }
     if (fs.existsSync(nativescriptEnvPath)) {
-      if (debug) console.log(`Removing link: ${webEnvPath} -> ${nativescriptEnvPath}`);
+      if (debug)
+        console.log(`Removing link: ${webEnvPath} -> ${nativescriptEnvPath}`);
       fs.unlinkSync(nativescriptEnvPath);
     }
 
@@ -60,20 +68,29 @@
   }
 
   function createSymLink() {
-    if (debug) console.log(`linking files in: ${webAppPath} -> ${nativescriptAppPath}`);
+    if (debug)
+      console.log(`linking files in: ${webAppPath} -> ${nativescriptAppPath}`);
 
-    const items = fsReaddirRecursive(webAppPath)
-      .filter(item => !item.includes('.browser.') && !item.includes('.server.'));
+    const items = fsReaddirRecursive(webAppPath).filter(
+      item => !item.includes('.browser.') && !item.includes('.server.')
+    );
 
-    const linkItem = (i) => {
+    const linkItem = i => {
       const item = items[i];
       const dirArr = `${nativescriptAppPath}/${item}`.split('/');
       dirArr.pop();
       const dir = dirArr.join('/');
 
       const createLink = () => {
-        if (debug) console.log(`linking: ${webAppPath}/${item} --> ${nativescriptAppPath}/${item}`);
-        fs.symlinkSync(`${webAppPath}/${item}`, `${nativescriptAppPath}/${item}`, 'junction');
+        if (debug)
+          console.log(
+            `linking: ${webAppPath}/${item} --> ${nativescriptAppPath}/${item}`
+          );
+        fs.symlinkSync(
+          `${webAppPath}/${item}`,
+          `${nativescriptAppPath}/${item}`,
+          'junction'
+        );
         items[i + 1] ? linkItem(i + 1) : renameTnsFiles();
       };
 
@@ -89,7 +106,7 @@
 
     const renameTnsFiles = () => {
       const nsItems = fsReaddirRecursive(nativescriptAppPath);
-      const tnsFiles = nsItems.filter(file => file.includes('.tns.'))
+      const tnsFiles = nsItems.filter(file => file.includes('.tns.'));
 
       tnsFiles.forEach(file => {
         const fullPath = `${nativescriptAppPath}/${file}`;
@@ -102,17 +119,17 @@
       });
 
       if (!fs.existsSync(nativescriptAssetsPath)) {
-        if (debug) console.log(`linking: ${webAssetsPath} -> ${nativescriptAssetsPath}`);
+        if (debug)
+          console.log(`linking: ${webAssetsPath} -> ${nativescriptAssetsPath}`);
         fs.symlinkSync(webAssetsPath, nativescriptAssetsPath, 'junction');
       }
       if (!fs.existsSync(nativescriptEnvPath)) {
-        if (debug) console.log(`linking: ${webEnvPath} -> ${nativescriptEnvPath}`);
+        if (debug)
+          console.log(`linking: ${webEnvPath} -> ${nativescriptEnvPath}`);
         fs.symlinkSync(webEnvPath, nativescriptEnvPath, 'junction');
       }
-    }
+    };
 
     linkItem(0);
-
-  };
-
+  }
 })();

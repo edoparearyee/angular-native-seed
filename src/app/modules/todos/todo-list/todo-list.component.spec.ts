@@ -8,34 +8,32 @@ import 'rxjs/add/observable/of';
 import { TodosActionTypes } from '../index';
 import { TodoListComponent } from './todo-list.component';
 
-let mockStore: { select: jasmine.Spy, dispatch: jasmine.Spy };
+let mockStore: { select: jasmine.Spy; dispatch: jasmine.Spy };
 
 describe('TodoListComponent', () => {
   let component: TodoListComponent;
   let fixture: ComponentFixture<TodoListComponent>;
 
   mockStore = {
-    select: jasmine.createSpy('select').and.returnValues(
-      Observable.of([{ id: 0, text: 'foo', completed: false }]),
-      Observable.of('')
-    ),
+    select: jasmine
+      .createSpy('select')
+      .and.returnValues(
+        Observable.of([{ id: 0, text: 'foo', completed: false }]),
+        Observable.of('')
+      ),
     dispatch: jasmine.createSpy('dispatch')
   };
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [ FormsModule ],
-      providers: [
-        { provide: Store, useValue: mockStore }
-      ],
-      schemas: [
-        NO_ERRORS_SCHEMA,
-        CUSTOM_ELEMENTS_SCHEMA
-      ],
-      declarations: [ TodoListComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [FormsModule],
+        providers: [{ provide: Store, useValue: mockStore }],
+        schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
+        declarations: [TodoListComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TodoListComponent);
@@ -50,7 +48,9 @@ describe('TodoListComponent', () => {
       type: TodosActionTypes.add,
       payload: { id: null, text: 'foo', completed: false }
     });
-    expect(mockStore.dispatch).toHaveBeenCalledWith({ type: TodosActionTypes.formInputReset });
+    expect(mockStore.dispatch).toHaveBeenCalledWith({
+      type: TodosActionTypes.formInputReset
+    });
   });
 
   it('should update form input', () => {

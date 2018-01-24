@@ -7,10 +7,7 @@
     {
       "root": "src",
       "outDir": "dist/browser",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
+      "assets": ["assets", "favicon.ico"],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
@@ -18,9 +15,7 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "styles": [
-        "scss/main.scss"
-      ],
+      "styles": ["scss/main.scss"],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
@@ -32,10 +27,7 @@
     {
       "root": "src",
       "outDir": "dist/server",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
+      "assets": ["assets", "favicon.ico"],
       "index": "index.html",
       "main": "main.server.ts",
       "polyfills": "polyfills.ts",
@@ -43,9 +35,7 @@
       "tsconfig": "tsconfig.server.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "styles": [
-        "scss/main.scss"
-      ],
+      "styles": ["scss/main.scss"],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {

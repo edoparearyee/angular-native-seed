@@ -16,7 +16,6 @@ describe('TodosReducer', () => {
   });
 
   describe('Add', () => {
-
     it('should add a todo', () => {
       const expected = {
         items: [todo1],
@@ -25,15 +24,16 @@ describe('TodosReducer', () => {
         lastEdited: null
       };
       const action = new todosActions.TodosAdd({ ...todo1, id: null });
-      const result = todosReducer.todosReducer(todosReducer.initialState, action);
+      const result = todosReducer.todosReducer(
+        todosReducer.initialState,
+        action
+      );
 
       expect(result).toEqual(expected);
     });
-
   });
 
   describe('Edit', () => {
-
     it('should edit a todo', () => {
       const state = {
         items: [todo1],
@@ -73,11 +73,9 @@ describe('TodosReducer', () => {
 
       expect(result).toEqual(expected);
     });
-
   });
 
   describe('Delete', () => {
-
     it('should delete a todo', () => {
       const state = {
         items: [todo1, todo2, todo3],
@@ -97,11 +95,9 @@ describe('TodosReducer', () => {
 
       expect(result).toEqual(expected);
     });
-
   });
 
   describe('Complete Set and Unset', () => {
-
     it('should set complete to true', () => {
       const state = {
         items: [todo1, todo2, todo3],
@@ -111,7 +107,7 @@ describe('TodosReducer', () => {
       };
 
       const expected = {
-        items: [{...todo1, completed: true}, todo2, todo3],
+        items: [{ ...todo1, completed: true }, todo2, todo3],
         formInput: '',
         incrementId: 3,
         lastEdited: null
@@ -124,14 +120,14 @@ describe('TodosReducer', () => {
 
     it('should set complete to false', () => {
       const state = {
-        items: [{...todo1, completed: true}, todo2, todo3],
+        items: [{ ...todo1, completed: true }, todo2, todo3],
         formInput: '',
         incrementId: 3,
         lastEdited: null
       };
 
       const expected = {
-        items: [{...todo1, completed: false}, todo2, todo3],
+        items: [{ ...todo1, completed: false }, todo2, todo3],
         formInput: '',
         incrementId: 3,
         lastEdited: null
@@ -141,11 +137,9 @@ describe('TodosReducer', () => {
 
       expect(result).toEqual(expected);
     });
-
   });
 
   describe('Form Input', () => {
-
     it('should set form input', () => {
       const state = {
         items: [todo1, todo2, todo3],
@@ -185,11 +179,9 @@ describe('TodosReducer', () => {
 
       expect(result).toEqual(expected);
     });
-
   });
 
   describe('Get state values', () => {
-
     it('should get todo list', () => {
       const state = {
         items: [todo1, todo2, todo3],
@@ -198,7 +190,7 @@ describe('TodosReducer', () => {
         lastEdited: null
       };
 
-      const expected =  [todo1, todo2, todo3];
+      const expected = [todo1, todo2, todo3];
       const result = todosReducer.getTodoItems(state);
 
       expect(result).toEqual(expected);
@@ -231,7 +223,5 @@ describe('TodosReducer', () => {
 
       expect(result).toEqual(expected);
     });
-
   });
-
 });

@@ -10,10 +10,12 @@ import { AppComponent } from './app.component';
 @NgModule({
   imports: [
     AppModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('/ngsw-worker.js', {
+      enabled: environment.production
+    }),
     ServerModule,
     ModuleMapLoaderModule
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppServerModule { }
+export class AppServerModule {}

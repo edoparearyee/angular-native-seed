@@ -5,13 +5,7 @@ import { TodosModule } from '../modules/todos/todos.module';
 import { HomeRoutingModule, routedComponents } from './home-routing.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TodosModule,
-    HomeRoutingModule
-  ],
-  declarations: [
-    ...routedComponents
-  ]
+  imports: [CommonModule, TodosModule, HomeRoutingModule],
+  declarations: [...routedComponents]
 })
-export class HomeModule { }
+export class HomeModule {}

@@ -1,6 +1,10 @@
 import {
-  Component, AfterViewInit, Input,
-  ViewChild, ElementRef, ChangeDetectionStrategy
+  Component,
+  AfterViewInit,
+  Input,
+  ViewChild,
+  ElementRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { filter, take } from 'rxjs/operators';
@@ -12,7 +16,7 @@ import { TodosActionTypes, getTodosLastEditedState } from '../store';
   moduleId: module.id,
   selector: 'app-todo',
   templateUrl: 'todo.component.html',
-  styleUrls: [ 'todo.component.scss' ],
+  styleUrls: ['todo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoComponent implements AfterViewInit {
@@ -21,21 +25,19 @@ export class TodoComponent implements AfterViewInit {
    * @type {Todo}
    * @memberof TodoComponent
    */
-  @Input()
-  public todo: Todo;
+  @Input() public todo: Todo;
   /**
    * Reference to input element in component template
    * @type {ElementRef}
    * @memberof TodoComponent
    */
-  @ViewChild('inputText')
-  public inputText: ElementRef;
+  @ViewChild('inputText') public inputText: ElementRef;
   /**
    * Creates an instance of TodoComponent.
    * @param {Store<TodosState>} store
    * @memberof TodoComponent
    */
-  constructor(public store: Store<TodosState>) { }
+  constructor(public store: Store<TodosState>) {}
   /**
    * Because we are creating a new state on all changes if this todo
    * is being currently being edited the component will be re-rendered
@@ -46,12 +48,10 @@ export class TodoComponent implements AfterViewInit {
    * @memberof TodoComponent
    */
   public ngAfterViewInit(): void {
-    this.store.select(getTodosLastEditedState)
-      .pipe(
-        take(1),
-        filter(id => this.todo.id === id)
-      )
-      .subscribe((id) => {
+    this.store
+      .select(getTodosLastEditedState)
+      .pipe(take(1), filter(id => this.todo.id === id))
+      .subscribe(id => {
         this.store.dispatch({ type: TodosActionTypes.lastEditedReset });
         this.inputText.nativeElement.focus();
       });
@@ -61,9 +61,15 @@ export class TodoComponent implements AfterViewInit {
    * @memberof TodoComponent
    */
   public toggleComplete(): void {
-    this.todo.completed ?
-      this.store.dispatch({ type: TodosActionTypes.completeUnset, payload: this.todo.id }) :
-      this.store.dispatch({ type: TodosActionTypes.completeSet, payload: this.todo.id });
+    this.todo.completed
+      ? this.store.dispatch({
+          type: TodosActionTypes.completeUnset,
+          payload: this.todo.id
+        })
+      : this.store.dispatch({
+          type: TodosActionTypes.completeSet,
+          payload: this.todo.id
+        });
   }
   /**
    * Edit todo item
@@ -71,7 +77,10 @@ export class TodoComponent implements AfterViewInit {
    */
   public edit(value): void {
     if (value !== this.todo.text) {
-      this.store.dispatch({ type: TodosActionTypes.edit, payload: { id: this.todo.id, text: value } });
+      this.store.dispatch({
+        type: TodosActionTypes.edit,
+        payload: { id: this.todo.id, text: value }
+      });
     }
   }
   /**
@@ -79,6 +88,9 @@ export class TodoComponent implements AfterViewInit {
    * @memberof TodoComponent
    */
   public delete(): void {
-    this.store.dispatch({ type: TodosActionTypes.delete, payload: this.todo.id });
+    this.store.dispatch({
+      type: TodosActionTypes.delete,
+      payload: this.todo.id
+    });
   }
 }

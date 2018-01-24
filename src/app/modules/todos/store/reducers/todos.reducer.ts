@@ -18,7 +18,6 @@ export function todosReducer(
   state: TodosState = initialState,
   action: TodosAction
 ): TodosState {
-
   switch (action.type) {
     case TodosActionTypes.add: {
       const item = newState(action.payload, { id: state.incrementId });
@@ -28,7 +27,9 @@ export function todosReducer(
 
     case TodosActionTypes.edit: {
       const idx = state.items.findIndex(item => item.id === action.payload.id);
-      const updatedItem: Todo = newState(state.items[idx], { text: action.payload.text });
+      const updatedItem: Todo = newState(state.items[idx], {
+        text: action.payload.text
+      });
       const items = [...state.items];
       items.splice(idx, 1, updatedItem);
       return newState(state, { items, lastEdited: action.payload.id });

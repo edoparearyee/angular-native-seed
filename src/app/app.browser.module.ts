@@ -8,8 +8,10 @@ import { AppComponent } from './app.component';
 @NgModule({
   imports: [
     AppModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('/ngsw-worker.js', {
+      enabled: environment.production
+    })
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppBrowserModule { }
+export class AppBrowserModule {}

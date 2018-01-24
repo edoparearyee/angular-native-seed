@@ -4,11 +4,11 @@ import { NativeScriptRouterModule } from 'nativescript-angular/router';
 
 const routes: Routes = [
   { path: '', loadChildren: './app/home/home.module#HomeModule' },
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
   imports: [NativeScriptRouterModule.forRoot(routes)],
   exports: [NativeScriptRouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

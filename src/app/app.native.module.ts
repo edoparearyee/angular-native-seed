@@ -7,16 +7,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  bootstrap: [
-    AppComponent
-  ],
-  imports: [
-    AppModule,
-    NativeScriptModule,
-    TNSCheckBoxModule
-  ],
-  schemas: [
-    NO_ERRORS_SCHEMA
-  ]
+  bootstrap: [AppComponent],
+  imports: [AppModule, NativeScriptModule, TNSCheckBoxModule],
+  schemas: [NO_ERRORS_SCHEMA]
 })
-export class AppNativeModule { }
+export class AppNativeModule {}

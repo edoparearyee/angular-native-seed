@@ -11,15 +11,9 @@ import { TodoComponent } from './todo/todo.component';
   imports: [
     CommonModule,
     FormsModule,
-    StoreModule.forFeature('todos', reducers),
+    StoreModule.forFeature('todos', reducers)
   ],
-  declarations: [
-    TodoListComponent,
-    TodoComponent
-  ],
-  exports: [
-    TodoListComponent,
-    TodoComponent
-  ]
+  declarations: [TodoListComponent, TodoComponent],
+  exports: [TodoListComponent, TodoComponent]
 })
-export class TodosModule { }
+export class TodosModule {}

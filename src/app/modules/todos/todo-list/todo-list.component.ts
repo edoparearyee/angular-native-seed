@@ -1,17 +1,27 @@
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { Todo, TodosState } from '../shared';
-import { TodosActionTypes, getTodoListState, getTodosFormInputState } from '../store';
+import {
+  TodosActionTypes,
+  getTodoListState,
+  getTodosFormInputState
+} from '../store';
 import { filter } from 'rxjs/operators';
 
 @Component({
   moduleId: module.id,
   selector: 'app-todo-list',
   templateUrl: 'todo-list.component.html',
-  styleUrls: [ 'todo-list.component.scss' ],
+  styleUrls: ['todo-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoListComponent implements OnInit {
@@ -34,7 +44,7 @@ export class TodoListComponent implements OnInit {
    * @param {Store<TodosState>} store
    * @memberof TodoListComponent
    */
-  constructor(private store: Store<TodosState>) { }
+  constructor(private store: Store<TodosState>) {}
   /**
    * Subscribe to todo list state from ngrx store
    *
@@ -50,12 +60,11 @@ export class TodoListComponent implements OnInit {
    * @memberof TodoListComponent
    */
   public add(): void {
-    this.formInput$.pipe(take(1))
-      .subscribe((input) => {
-        const item: Todo = { id: null, text: input, completed: false };
-        this.store.dispatch({ type: TodosActionTypes.add, payload: item });
-        this.store.dispatch({ type: TodosActionTypes.formInputReset });
-      });
+    this.formInput$.pipe(take(1)).subscribe(input => {
+      const item: Todo = { id: null, text: input, completed: false };
+      this.store.dispatch({ type: TodosActionTypes.add, payload: item });
+      this.store.dispatch({ type: TodosActionTypes.formInputReset });
+    });
   }
   /**
    * Send input value to store
@@ -64,6 +73,9 @@ export class TodoListComponent implements OnInit {
    * @memberof TodoListComponent
    */
   public onInputChange(value: string): void {
-    this.store.dispatch({ type: TodosActionTypes.formInputSet, payload: value });
+    this.store.dispatch({
+      type: TodosActionTypes.formInputSet,
+      payload: value
+    });
   }
 }

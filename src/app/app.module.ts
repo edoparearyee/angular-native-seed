@@ -11,13 +11,14 @@ import { environment } from '../environments/environment';
 @NgModule({
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    StoreModule.forRoot({}, { metaReducers: !environment.production ? [storeFreeze] : [] }),
+    StoreModule.forRoot(
+      {},
+      { metaReducers: !environment.production ? [storeFreeze] : [] }
+    ),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    AppRoutingModule,
+    AppRoutingModule
   ],
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   exports: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
