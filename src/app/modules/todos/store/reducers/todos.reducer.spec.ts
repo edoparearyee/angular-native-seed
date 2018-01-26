@@ -20,8 +20,7 @@ describe('TodosReducer', () => {
       const expected = {
         items: [todo1],
         formInput: '',
-        incrementId: 1,
-        lastEdited: null
+        incrementId: 1
       };
       const action = new todosActions.TodosAdd({ ...todo1, id: null });
       const result = todosReducer.todosReducer(
@@ -38,37 +37,15 @@ describe('TodosReducer', () => {
       const state = {
         items: [todo1],
         formInput: '',
-        incrementId: 1,
-        lastEdited: null
+        incrementId: 1
       };
 
       const expected = {
         items: [{ ...todo1, text: 'foobar' }],
         formInput: '',
-        incrementId: 1,
-        lastEdited: 0
+        incrementId: 1
       };
       const action = new todosActions.TodosEdit({ id: 0, text: 'foobar' });
-      const result = todosReducer.todosReducer(state, action);
-
-      expect(result).toEqual(expected);
-    });
-
-    it('should reset lasted edit todo', () => {
-      const state = {
-        items: [todo1],
-        formInput: '',
-        incrementId: 1,
-        lastEdited: 0
-      };
-
-      const expected = {
-        items: [todo1],
-        formInput: '',
-        incrementId: 1,
-        lastEdited: null
-      };
-      const action = new todosActions.TodosLastEditedReset();
       const result = todosReducer.todosReducer(state, action);
 
       expect(result).toEqual(expected);
@@ -80,15 +57,13 @@ describe('TodosReducer', () => {
       const state = {
         items: [todo1, todo2, todo3],
         formInput: '',
-        incrementId: 3,
-        lastEdited: null
+        incrementId: 3
       };
 
       const expected = {
         items: [todo1, todo3],
         formInput: '',
-        incrementId: 3,
-        lastEdited: null
+        incrementId: 3
       };
       const action = new todosActions.TodosDelete(1);
       const result = todosReducer.todosReducer(state, action);
@@ -102,15 +77,13 @@ describe('TodosReducer', () => {
       const state = {
         items: [todo1, todo2, todo3],
         formInput: '',
-        incrementId: 3,
-        lastEdited: null
+        incrementId: 3
       };
 
       const expected = {
         items: [{ ...todo1, completed: true }, todo2, todo3],
         formInput: '',
-        incrementId: 3,
-        lastEdited: null
+        incrementId: 3
       };
       const action = new todosActions.TodosCompleteSet(0);
       const result = todosReducer.todosReducer(state, action);
@@ -122,15 +95,13 @@ describe('TodosReducer', () => {
       const state = {
         items: [{ ...todo1, completed: true }, todo2, todo3],
         formInput: '',
-        incrementId: 3,
-        lastEdited: null
+        incrementId: 3
       };
 
       const expected = {
         items: [{ ...todo1, completed: false }, todo2, todo3],
         formInput: '',
-        incrementId: 3,
-        lastEdited: null
+        incrementId: 3
       };
       const action = new todosActions.TodosCompleteUnset(0);
       const result = todosReducer.todosReducer(state, action);
@@ -144,15 +115,13 @@ describe('TodosReducer', () => {
       const state = {
         items: [todo1, todo2, todo3],
         formInput: '',
-        incrementId: 3,
-        lastEdited: null
+        incrementId: 3
       };
 
       const expected = {
         items: [todo1, todo2, todo3],
         formInput: 'foo',
-        incrementId: 3,
-        lastEdited: null
+        incrementId: 3
       };
       const action = new todosActions.TodosFormInputSet('foo');
       const result = todosReducer.todosReducer(state, action);
@@ -164,15 +133,13 @@ describe('TodosReducer', () => {
       const state = {
         items: [todo1, todo2, todo3],
         formInput: 'foo',
-        incrementId: 3,
-        lastEdited: null
+        incrementId: 3
       };
 
       const expected = {
         items: [todo1, todo2, todo3],
         formInput: '',
-        incrementId: 3,
-        lastEdited: null
+        incrementId: 3
       };
       const action = new todosActions.TodosFormInputReset();
       const result = todosReducer.todosReducer(state, action);
@@ -186,8 +153,7 @@ describe('TodosReducer', () => {
       const state = {
         items: [todo1, todo2, todo3],
         formInput: '',
-        incrementId: 3,
-        lastEdited: null
+        incrementId: 3
       };
 
       const expected = [todo1, todo2, todo3];
@@ -200,26 +166,11 @@ describe('TodosReducer', () => {
       const state = {
         items: [todo1, todo2, todo3],
         formInput: 'foo',
-        incrementId: 3,
-        lastEdited: null
+        incrementId: 3
       };
 
       const expected = 'foo';
       const result = todosReducer.getTodosFormInput(state);
-
-      expect(result).toEqual(expected);
-    });
-
-    it('should get last edited', () => {
-      const state = {
-        items: [todo1, todo2, todo3],
-        formInput: 'foo',
-        incrementId: 3,
-        lastEdited: 0
-      };
-
-      const expected = 0;
-      const result = todosReducer.getTodosLastEdited(state);
 
       expect(result).toEqual(expected);
     });

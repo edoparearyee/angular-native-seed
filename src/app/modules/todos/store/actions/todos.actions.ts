@@ -9,8 +9,7 @@ export enum TodosActionTypes {
   completeSet = '[Todos] Complete Set',
   completeUnset = '[Todos] Complete Unset',
   formInputSet = '[Todos] Form Input Set',
-  formInputReset = '[Todos] Form Input Reset',
-  lastEditedReset = '[Todos] Last Edited Reset'
+  formInputReset = '[Todos] Form Input Reset'
 }
 
 export class TodosAdd implements Action {
@@ -53,10 +52,6 @@ export class TodosFormInputReset implements Action {
   readonly type = TodosActionTypes.formInputReset;
 }
 
-export class TodosLastEditedReset implements Action {
-  readonly type = TodosActionTypes.lastEditedReset;
-}
-
 export type TodosAction =
   | TodosAdd
   | TodosEdit
@@ -64,5 +59,4 @@ export type TodosAction =
   | TodosCompleteSet
   | TodosCompleteUnset
   | TodosFormInputSet
-  | TodosFormInputReset
-  | TodosLastEditedReset;
+  | TodosFormInputReset;

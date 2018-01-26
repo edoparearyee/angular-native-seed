@@ -1,11 +1,11 @@
-<app-todo *ngFor="let todo of todos$ | async" [todo]="todo"></app-todo>
+<app-todo *ngFor="let todo of todos$ | async; trackBy: trackTodo" [todo]="todo"></app-todo>
 <form ngForm #createTodoForm="ngForm" (submit)="add()">
   <input
     name="formInput"
     type="text"
     [value]="formInput$ | async"
     (input)="onInputChange($event.target.value)"
-    autocomplete="false"
+    autocomplete="off"
     autofocus
     required>
   <button type="submit">Add</button>

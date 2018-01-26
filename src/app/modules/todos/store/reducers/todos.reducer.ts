@@ -6,7 +6,6 @@ import { TodosAction, TodosActionTypes } from '../actions';
 export const initialState: TodosState = {
   incrementId: 0,
   formInput: '',
-  lastEdited: null,
   items: []
 };
 
@@ -32,7 +31,7 @@ export function todosReducer(
       });
       const items = [...state.items];
       items.splice(idx, 1, updatedItem);
-      return newState(state, { items, lastEdited: action.payload.id });
+      return newState(state, { items });
     }
 
     case TodosActionTypes.delete: {
@@ -67,10 +66,6 @@ export function todosReducer(
       return newState(state, { formInput: '' });
     }
 
-    case TodosActionTypes.lastEditedReset: {
-      return newState(state, { lastEdited: null });
-    }
-
     default: {
       return state;
     }
@@ -79,4 +74,3 @@ export function todosReducer(
 
 export const getTodoItems = (state: TodosState) => state.items;
 export const getTodosFormInput = (state: TodosState) => state.formInput;
-export const getTodosLastEdited = (state: TodosState) => state.lastEdited;

@@ -1,12 +1,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 import { TodosState } from '../../shared';
-import {
-  todosReducer,
-  getTodoItems,
-  getTodosFormInput,
-  getTodosLastEdited
-} from './todos.reducer';
+import { todosReducer, getTodoItems, getTodosFormInput } from './todos.reducer';
 
 export const reducers = todosReducer;
 
@@ -17,9 +12,4 @@ export const getTodoListState = createSelector(getTodosState, getTodoItems);
 export const getTodosFormInputState = createSelector(
   getTodosState,
   getTodosFormInput
-);
-
-export const getTodosLastEditedState = createSelector(
-  getTodosState,
-  getTodosLastEdited
 );

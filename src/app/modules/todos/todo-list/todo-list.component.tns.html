@@ -1,5 +1,5 @@
 <StackLayout>
-  <app-todo *ngFor="let todo of todos$ | async" [todo]="todo"></app-todo>
+  <app-todo *ngFor="let todo of todos$ | async; trackBy: trackTodo" [todo]="todo"></app-todo>
   <FlexboxLayout flexDirection="row">
     <TextField
       [text]="formInput$ | async"
