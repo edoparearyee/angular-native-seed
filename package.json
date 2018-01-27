@@ -72,7 +72,7 @@
     "codelyzer": "^4.0.1",
     "coveralls": "^3.0.0",
     "cz-conventional-changelog": "^2.1.0",
-    "electron": "^1.7.10",
+    "electron": "^1.7.11",
     "electron-packager": "^10.1.1",
     "fs-readdir-recursive": "^1.1.0",
     "husky": "^0.14.3",
@@ -104,5 +104,7 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "browserslist": ["last 2 versions"]
+  "browserslist": [
+    "last 2 versions"
+  ]
 }
