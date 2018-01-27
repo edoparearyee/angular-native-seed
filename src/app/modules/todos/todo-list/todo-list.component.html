@@ -1,12 +1,27 @@
-<app-todo *ngFor="let todo of todos$ | async; trackBy: trackTodo" [todo]="todo"></app-todo>
-<form ngForm #createTodoForm="ngForm" (submit)="add()">
-  <input
-    name="formInput"
-    type="text"
-    [value]="formInput$ | async"
-    (input)="onInputChange($event.target.value)"
-    autocomplete="off"
-    autofocus
-    required>
-  <button class="btn-todos-submit" type="submit">Add</button>
-</form>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="mat-h1">Todo List</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <app-todo *ngFor="let todo of todos$ | async; trackBy: trackTodo" [todo]="todo"></app-todo>
+    <form ngForm #createTodoForm="ngForm" (submit)="add()">
+      <mat-form-field
+        hideRequiredMarker="true"
+        floatLabel="never">
+        <input
+          name="formInput"
+          type="text"
+          placeholder="Add a todo..."
+          [value]="formInput$ | async"
+          (input)="onInputChange($event.target.value)"
+          autocomplete="off"
+          autofocus
+          required
+          matInput>
+      </mat-form-field>
+      <button mat-icon-button color="primary" class="btn-todos-submit" type="submit">
+        <mat-icon>add</mat-icon>
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

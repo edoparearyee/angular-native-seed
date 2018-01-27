@@ -1,6 +1,13 @@
 :host {
+  align-items: center;
   display: flex;
-  padding: 0.5rem 0;
+  justify-content: space-between;
+}
+
+.mat-form-field {
+  flex-grow: 2;
+  padding: 0 1rem;
+  width: 100%;
 }
 
 .text {

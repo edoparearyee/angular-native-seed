@@ -1,1 +1,21 @@
+:host {
+  display: block;
+  padding: 1.25rem;
+}
 
+.mat-card {
+  margin: 0 auto;
+  max-width: 31.25rem;
+}
+
+.mat-form-field {
+  width: 89%;
+}
+
+.mat-card-content {
+  padding: 0 0.5rem;
+}
+
+.btn-todos-submit {
+  display: none;
+}

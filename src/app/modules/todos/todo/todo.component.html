@@ -1,10 +1,15 @@
-<input type="checkbox" [checked]="todo.completed" (change)="toggleComplete()">
-<input
-  type="text"
-  class="text"
-  [value]="todo.text"
-  (input)="edit($event.target.value)"
-  [ngClass]="{ 'completed': todo.completed }"
-  [disabled]="todo.completed"
-  autocomplete="off">
-<button type="button" (click)="delete()">Delete</button>
+<mat-checkbox [checked]="todo.completed" (change)="toggleComplete()"></mat-checkbox>
+<mat-form-field>
+  <input
+    type="text"
+    class="text"
+    [value]="todo.text"
+    (input)="edit($event.target.value)"
+    [ngClass]="{ 'completed': todo.completed }"
+    [disabled]="todo.completed"
+    autocomplete="off"
+    matInput>
+</mat-form-field>
+<button mat-icon-button color="warn" type="button" (click)="delete()">
+  <mat-icon>delete</mat-icon>
+</button>
