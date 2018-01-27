@@ -26,12 +26,6 @@ export class TodoComponent {
    */
   @Input() public todo: Todo;
   /**
-   * Reference to input element in component template
-   * @type {ElementRef}
-   * @memberof TodoComponent
-   */
-  @ViewChild('inputText') public inputText: ElementRef;
-  /**
    * Creates an instance of TodoComponent.
    * @param {Store<TodosState>} store
    * @memberof TodoComponent

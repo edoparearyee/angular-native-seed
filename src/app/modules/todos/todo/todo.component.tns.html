@@ -2,7 +2,6 @@
   <CheckBox [checked]="todo.completed" (checkedChange)="toggleComplete()" flexGrow="1"></CheckBox>
 
   <TextField
-    #inputText
     [text]="todo.text"
     (textChange)="edit($event.object.text)"
     [ngClass]="{ 'text-muted': todo.completed }"

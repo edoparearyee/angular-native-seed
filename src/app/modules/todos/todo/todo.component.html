@@ -1,11 +1,10 @@
 <input type="checkbox" [checked]="todo.completed" (change)="toggleComplete()">
 <input
-  #inputText
   type="text"
   class="text"
   [value]="todo.text"
   (input)="edit($event.target.value)"
   [ngClass]="{ 'completed': todo.completed }"
   [disabled]="todo.completed"
-  autocomplete="false">
+  autocomplete="off">
 <button type="button" (click)="delete()">Delete</button>
