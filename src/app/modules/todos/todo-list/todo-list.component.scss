@@ -3,6 +3,11 @@
   padding: 1.25rem;
 }
 
+.form {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .mat-card {
   margin: 0 auto;
   max-width: 31.25rem;
@@ -17,5 +22,7 @@
 }
 
 .btn-todos-submit {
-  display: none;
+  height: auto;
+  padding-right: 0.75rem;
+  width: auto;
 }

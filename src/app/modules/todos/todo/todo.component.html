@@ -1,4 +1,4 @@
-<mat-checkbox [checked]="todo.completed" (change)="toggleComplete()"></mat-checkbox>
+<mat-checkbox color="primary" [checked]="todo.completed" (change)="toggleComplete()"></mat-checkbox>
 <mat-form-field>
   <input
     type="text"
@@ -10,6 +10,6 @@
     autocomplete="off"
     matInput>
 </mat-form-field>
-<button mat-icon-button color="warn" type="button" (click)="delete()">
-  <mat-icon>delete</mat-icon>
+<button mat-icon-button type="button" (click)="delete()">
+  <mat-icon color="accent">cancel</mat-icon>
 </button>

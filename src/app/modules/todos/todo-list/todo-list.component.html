@@ -1,10 +1,24 @@
 <mat-card>
+
   <mat-card-header>
     <mat-card-title class="mat-h1">Todo List</mat-card-title>
   </mat-card-header>
+
   <mat-card-content>
+
     <app-todo *ngFor="let todo of todos$ | async; trackBy: trackTodo" [todo]="todo"></app-todo>
-    <form ngForm #createTodoForm="ngForm" (submit)="add()">
+
+    <form class="form" ngForm #createTodoForm="ngForm" (submit)="add()">
+
+      <button
+        mat-icon-button
+        color="accent"
+        class="btn-todos-submit"
+        type="submit"
+        [disabled]="(formInput$ | async).length < 1">
+        <mat-icon>add_box</mat-icon>
+      </button>
+
       <mat-form-field
         hideRequiredMarker="true"
         floatLabel="never">
@@ -19,9 +33,9 @@
           required
           matInput>
       </mat-form-field>
-      <button mat-icon-button color="primary" class="btn-todos-submit" type="submit">
-        <mat-icon>add</mat-icon>
-      </button>
+
     </form>
+
   </mat-card-content>
+
 </mat-card>

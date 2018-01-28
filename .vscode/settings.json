@@ -5,30 +5,42 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "nativescript/app/**/*.js": true,
-    "nativescript/app/App_Resources/**": true,
     "src/app/**/*.js": true,
-    "build/**/*.app/**": true
+    "nativescript/app/**/*.js": true,
+    "nativescript/app/**/*.css": true,
+    "nativescript/app/app": true,
+    "build/**/*.app": true
   },
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
     "**/node_modules/**": true,
-    "node_modules/**": true,
     "build/**": true,
-    "nativescript/node_modules/**": true,
     "nativescript/platforms/**": true,
     "nativescript/hooks/**": true,
-    "nativescript/app/App_Resources/**": true
+    "nativescript/app/App_Resources/**": true,
+    "nativescript/app/app/**": true,
+    "nativescript/app/**/*.js": true,
+    "nativescript/app/enviroments/**": true,
+    "nativescript/app/assets/**": true
   },
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
     "build": true,
-    "nativescript/node_modules": true,
     "nativescript/platforms": true,
     "nativescript/hooks": true,
-    "nativescript/App_Resources": true
+    "nativescript/App_Resources": true,
+    "nativescript/app/app": true,
+    "nativescript/app/**/*.js": true,
+    "nativescript/app/enviroments": true,
+    "nativescript/app/assets": true
   },
-  "tslint.exclude": "build/**/*.app/**"
+  "tslint.exclude": [
+    "**/dist/**",
+    "**/build/**",
+    "**/node_modules/**",
+    "build/**/*.app/**",
+    "nativescript/app/app/**"
+  ]
 }

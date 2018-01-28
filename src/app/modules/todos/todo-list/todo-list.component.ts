@@ -6,7 +6,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { take } from 'rxjs/operators';
+import { take, filter } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { Todo, TodosState } from '../shared';
@@ -15,7 +15,6 @@ import {
   getTodoListState,
   getTodosFormInputState
 } from '../store';
-import { filter } from 'rxjs/operators';
 
 @Component({
   moduleId: module.id,
@@ -60,11 +59,13 @@ export class TodoListComponent implements OnInit {
    * @memberof TodoListComponent
    */
   public add(): void {
-    this.formInput$.pipe(take(1)).subscribe(input => {
-      const item: Todo = { id: null, text: input, completed: false };
-      this.store.dispatch({ type: TodosActionTypes.add, payload: item });
-      this.store.dispatch({ type: TodosActionTypes.formInputReset });
-    });
+    this.formInput$
+      .pipe(take(1), filter(input => input.length > 0))
+      .subscribe(input => {
+        const item: Todo = { id: null, text: input, completed: false };
+        this.store.dispatch({ type: TodosActionTypes.add, payload: item });
+        this.store.dispatch({ type: TodosActionTypes.formInputReset });
+      });
   }
   /**
    * Send input value to store

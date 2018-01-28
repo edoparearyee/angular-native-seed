@@ -1,15 +1,22 @@
-<StackLayout>
+<StackLayout class="p-t-15">
+  <Label class="h2 body p-l-15 p-r-20 p-b-25" text="Todo List" textWrap="true"></Label>
+
   <app-todo *ngFor="let todo of todos$ | async; trackBy: trackTodo" [todo]="todo"></app-todo>
-  <FlexboxLayout flexDirection="row">
+  <FlexboxLayout flexDirection="row" class="p-l-15 p-r-20">
+    <Label
+      text="&#xE146;"
+      class="h1 body mdi"
+      flexGrow="1">
+    </Label>
     <TextField
       [text]="formInput$ | async"
       (textChange)="onInputChange($event.object.text)"
+      (returnPress)="add()"
       hint="Add a todo..."
       autocorrect="false"
       autocapitalizationType="none"
       class="input"
       flexGrow="10">
     </TextField>
-    <Button text="Add" (tap)="add()" class="btn btn-primary btn-lime" flexGrow="1" [disabled]="(formInput$ | async).length === 0"></Button>
   </FlexboxLayout>
 </StackLayout>

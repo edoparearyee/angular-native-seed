@@ -10,9 +10,11 @@
   width: 100%;
 }
 
-.text {
-  margin: 0 1rem;
+.mat-icon-button {
+  width: auto;
+}
 
+.text {
   &.completed {
     text-decoration: line-through;
   }

@@ -1,10 +1,14 @@
-<FlexboxLayout flexDirection="row">
-  <CheckBox [checked]="todo.completed" (checkedChange)="toggleComplete()" flexGrow="1"></CheckBox>
+<FlexboxLayout flexDirection="row" class="p-l-15 p-r-15 p-b-15" alignItems="center" justifyContent="space-between">
+  <CheckBox
+    [checked]="todo.completed"
+    (checkedChange)="toggleComplete()"
+    flexGrow="1">
+  </CheckBox>
 
   <TextField
     [text]="todo.text"
     (textChange)="edit($event.object.text)"
-    [ngClass]="{ 'text-muted': todo.completed }"
+    [ngClass]="{ 'completed': todo.completed }"
     [editable]="!todo.completed"
     autocorrect="false"
     autocapitalizationType="none"
@@ -12,5 +16,10 @@
     flexGrow="100">
   </TextField>
 
-  <Button class="btn btn-primary btn-ruby" (tap)="delete()" text="Delete" flexGrow="1"></Button>
+  <Label
+    class="body h1 mdi m-t-5 m-l-5"
+    (tap)="delete()"
+    text="&#xE5C9;"
+    flexGrow="1">
+  </Label>
 </FlexboxLayout>

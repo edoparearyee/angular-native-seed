@@ -1,1 +1,7 @@
+.input {
+  margin-top: 3;
 
+  &.completed {
+    opacity: 0.2;
+  }
+}
