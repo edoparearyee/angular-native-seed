@@ -1,10 +1,24 @@
 {
   "name": "angular-native-seed",
+  "description": "An example Angular application built with the Angular CLI that includes server side rendering, service worker, native iOS and Android apps using the NativeScript CLI and native MacOS and Windows apps using Electron, Docker, unit and e2e testing, linting, automatic code formatting and CI integration",
   "version": "0.0.0",
   "license": "MIT",
+  "readme": "https://github.com/edoparearyee/angular-native-seed/blob/master/README.md",
   "private": true,
   "main": "main.js",
   "files": [],
+  "author": "Ed Opare-Aryee <ed@thisissoon.com>",
+  "contributors": [
+    "Ed Opare-Aryee <ed@thisissoon.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edoparearyee/angular-native-seed"
+  },
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.5.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

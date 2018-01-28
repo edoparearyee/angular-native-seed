@@ -1,8 +1,12 @@
 {
-  "description": "NativeScript Application",
-  "license": "SEE LICENSE IN <your-license-filename>",
-  "readme": "NativeScript Application",
-  "repository": "<fill-your-repository-here>",
+  "description": "Angular Native Seed",
+  "license": "MIT",
+  "readme":
+    "https://github.com/edoparearyee/angular-native-seed/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/edoparearyee/angular-native-seed"
+  },
   "nativescript": {
     "id": "org.nativescript.AngularNativeSeed",
     "tns-android": {

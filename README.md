@@ -5,6 +5,8 @@
 [![Commitizen friendly][commitizen-badge]][commitizen]
 [![code style: prettier][prettier-badge]][prettier]
 
+An example [Angular][angular] application built with the [Angular CLI][angular-cli] that includes server side rendering, service worker, native iOS and Android apps using the [NativeScript CLI][nativescript] and native MacOS and Windows apps using [Electron][electron], [Docker][docker], unit and e2e testing, linting, automatic code formatting and CI integration.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
 
 ## Development server
@@ -85,6 +87,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 [standard-version]: https://github.com/conventional-changelog/standard-version
 [karma]: https://karma-runner.github.io
 [protractor]: http://www.protractortest.org/
+[angular]: https://angular.io/
 [angular-cli]: https://github.com/angular/angular-cli
 [angular-cli-readme]: https://github.com/angular/angular-cli/blob/master/README.md
 [express]: https://expressjs.com/
@@ -95,3 +98,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 [electron]: https://electronjs.org/
 [prettier-badge]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=badge
 [prettier]: https://github.com/prettier/prettier
+
+[docker]:[https://www.docker.com/]
