@@ -1,33 +1,34 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { MaterialModule } from '../../material/material.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import { of } from 'rxjs/observable/of';
 import { Store } from '@ngrx/store';
-import 'rxjs/add/observable/of';
 
 import { TodosActionTypes } from '../index';
 import { TodoListComponent } from './todo-list.component';
 
-let mockStore: { select: jasmine.Spy; dispatch: jasmine.Spy };
-
 describe('TodoListComponent', () => {
   let component: TodoListComponent;
   let fixture: ComponentFixture<TodoListComponent>;
-
-  mockStore = {
-    select: jasmine
-      .createSpy('select')
-      .and.returnValues(
-        Observable.of([{ id: 0, text: 'foo', completed: false }]),
-        Observable.of('')
-      ),
-    dispatch: jasmine.createSpy('dispatch')
-  };
+  let mockStore: { select: jasmine.Spy; dispatch: jasmine.Spy };
 
   beforeEach(
     async(() => {
+      mockStore = {
+        select: jasmine
+          .createSpy('select')
+          .and.returnValues(
+            of([{ id: 0, text: 'foo', completed: false }]),
+            of('')
+          ),
+        dispatch: jasmine.createSpy('dispatch')
+      };
+
       TestBed.configureTestingModule({
-        imports: [FormsModule],
+        imports: [FormsModule, MaterialModule, NoopAnimationsModule],
         providers: [{ provide: Store, useValue: mockStore }],
         schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
         declarations: [TodoListComponent]
@@ -42,7 +43,7 @@ describe('TodoListComponent', () => {
   });
 
   it('should add todo', () => {
-    component.formInput$ = Observable.of('foo');
+    component.formInput$ = of('foo');
     component.add();
     expect(mockStore.dispatch).toHaveBeenCalledWith({
       type: TodosActionTypes.add,
@@ -59,5 +60,17 @@ describe('TodoListComponent', () => {
       type: TodosActionTypes.formInputSet,
       payload: 'foo'
     });
+  });
+
+  it('should return todo id', () => {
+    const todo = { id: 1, text: 'foo', completed: false };
+    const result = component.trackTodo(0, todo);
+    expect(result).toBe(1);
+  });
+
+  it('should return undefined', () => {
+    const todo: any = null;
+    const result = component.trackTodo(0, todo);
+    expect(result).toBeUndefined();
   });
 });

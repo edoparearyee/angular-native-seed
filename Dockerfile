@@ -1,5 +1,5 @@
 #
-# Builds a docker image to run the Frontend for SoftBank
+# Builds a docker image to run Angular Native Seed
 #
 
 # Pull node base image

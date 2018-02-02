@@ -79,7 +79,14 @@ export class TodoListComponent implements OnInit {
       payload: value
     });
   }
-
+  /**
+   * Returns id of todo
+   *
+   * @param {number} index
+   * @param {Todo} todo
+   * @returns {number}
+   * @memberof TodoListComponent
+   */
   public trackTodo(index: number, todo: Todo): number {
     return todo ? todo.id : undefined;
   }
