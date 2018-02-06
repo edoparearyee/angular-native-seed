@@ -6,6 +6,7 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "src/app/**/*.js": true,
+    "src/environment/**/*.js": true,
     "nativescript/app/**/*.js": true,
     "nativescript/app/**/*.css": true,
     "nativescript/app/app": true,

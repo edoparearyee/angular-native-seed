@@ -37,6 +37,10 @@ export class AppPage {
     return element.all(by.css(`app-todo input[type="checkbox"]`)).get(i);
   }
 
+  getTodoCompleteCheckboxLabel(i: number) {
+    return element.all(by.css(`app-todo label[for^="mat-checkbox"]`)).get(i);
+  }
+
   enterInputText(value: string) {
     const input = this.getTodosFormInput();
     return input.sendKeys(value);
@@ -48,7 +52,7 @@ export class AppPage {
   }
 
   toggleTodoComplete(i: number) {
-    return this.getTodoCompleteCheckbox(i).click();
+    return this.getTodoCompleteCheckboxLabel(i).click();
   }
 
   isTodoComplete(i: number) {
