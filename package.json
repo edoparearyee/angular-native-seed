@@ -27,7 +27,7 @@
     "lint:ts": "ng lint",
     "lint:scss": "stylelint --syntax scss \"src/scss/**/*.scss\"",
     "lint": "npm run format:check && npm run lint:ts && npm run lint:scss",
-    "format:check": "prettier --config ./.prettierrc -l \"{src/{app,environments,assets}/**/*.{ts,json,css,scss},nativescript/app/*.{ts,json,css,scss},./*.{ts,js,json,css,scss}}\"",
+    "format:check": "prettier --config ./.prettierrc -l \"{src/{app,environments,assets}/**/*.{ts,json,scss},nativescript/app/*.{ts,json,scss},./*.{ts,js,json,scss}}\"",
     "format:fix:staged": "pretty-quick --staged",
     "format:fix:all": "npm run format:check -- --write",
     "e2e": "ng e2e",
