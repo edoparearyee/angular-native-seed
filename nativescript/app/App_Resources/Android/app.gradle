@@ -5,15 +5,15 @@
 //	compile 'com.android.support:recyclerview-v7:+'
 //}
 
-android {  
-  defaultConfig {  
+android {
+  defaultConfig {
     generatedDensities = []
-    applicationId = "org.nativescript.AngularNativeSeed"  
-  }  
-  aaptOptions {  
-    additionalParameters "--no-version-vectors"  
-  }  
-} 
+    applicationId = "com.edoparearyee.AngularNativeSeed"
+  }
+  aaptOptions {
+    additionalParameters "--no-version-vectors"
+  }
+}
 
 def settingsGradlePath
 

@@ -39,6 +39,8 @@
     "start:ios:debug": "cd nativescript && tns debug ios",
     "prestart:android:debug": "npm run symlink",
     "start:android:debug": "cd nativescript && tns debug android",
+    "clean:android": "cd nativescript && tns platform remove android",
+    "clean:ios": "cd nativescript && tns platform remove ios",
     "coverage": "coveralls < coverage/lcov.info",
     "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
     "serve:ssr": "node dist/server.js",
