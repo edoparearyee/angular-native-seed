@@ -42,8 +42,8 @@
     "coverage": "coveralls < coverage/lcov.info",
     "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
     "serve:ssr": "node dist/server.js",
-    "build:client-and-server-bundles": "ng build --prod && ng build --prod --app ssr --output-hashing false",
-    "webpack:server": "webpack --config webpack.server.js --progress --colors",
+    "build:client-and-server-bundles": "ng build --prod && ng run angular-native-seed:server:production",
+    "webpack:server": "webpack --config webpack.server.js --colors",
     "prestart:desktop": "npm run build",
     "start:desktop": "electron .",
     "prebuild:desktop:win": "npm run build",
@@ -115,7 +115,8 @@
     "stylelint-scss": "^3.1.0",
     "ts-node": "~6.0.5",
     "tslint": "~5.10.0",
-    "typescript": "~2.7.2"
+    "typescript": "~2.7.2",
+    "webpack-cli": "^3.0.0"
   },
   "config": {
     "commitizen": {
