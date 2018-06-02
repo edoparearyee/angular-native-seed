@@ -8,7 +8,7 @@ function createWindow() {
     width: 700,
     height: 700,
     backgroundColor: '#ffffff',
-    icon: `file://${__dirname}/dist/browser/assets/logo.png`
+    icon: `file://${__dirname}/dist/browser/assets/icon/android-chrome-256x256.png`
   });
 
   win.loadURL(`file://${__dirname}/dist/browser/index.html`);
