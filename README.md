@@ -7,8 +7,6 @@
 
 An example [Angular][angular] application built with the [Angular CLI][angular-cli] that includes server side rendering, service worker, native iOS and Android apps using the [NativeScript CLI][nativescript] and native MacOS and Windows apps using [Electron][electron], [Docker][docker], unit and e2e testing, linting, automatic code formatting and CI integration.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
-
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
