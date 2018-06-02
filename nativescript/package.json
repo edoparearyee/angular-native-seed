@@ -1,14 +1,14 @@
 {
+  "name": "angular-native-seed",
   "description": "Angular Native Seed",
   "license": "MIT",
-  "readme":
-    "https://github.com/edoparearyee/angular-native-seed/blob/master/README.md",
+  "readme": "https://github.com/edoparearyee/angular-native-seed/blob/master/README.md",
   "repository": {
     "type": "git",
     "url": "https://github.com/edoparearyee/angular-native-seed"
   },
   "nativescript": {
-    "id": "org.nativescript.AngularNativeSeed",
+    "id": "com.edoparearyee.angular-native-seed",
     "tns-ios": {
       "version": "4.0.1"
     },

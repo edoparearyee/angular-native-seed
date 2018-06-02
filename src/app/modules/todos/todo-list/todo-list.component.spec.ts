@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MaterialModule } from '../../material/material.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
-import { of } from 'rxjs/observable/of';
+import { of } from 'rxjs';
 import { Store } from '@ngrx/store';
+
+import { MaterialModule } from '../../material/material.module';
 
 import { TodosActionTypes } from '../index';
 import { TodoListComponent } from './todo-list.component';
@@ -15,26 +15,24 @@ describe('TodoListComponent', () => {
   let fixture: ComponentFixture<TodoListComponent>;
   let mockStore: { select: jasmine.Spy; dispatch: jasmine.Spy };
 
-  beforeEach(
-    async(() => {
-      mockStore = {
-        select: jasmine
-          .createSpy('select')
-          .and.returnValues(
-            of([{ id: 0, text: 'foo', completed: false }]),
-            of('')
-          ),
-        dispatch: jasmine.createSpy('dispatch')
-      };
+  beforeEach(async(() => {
+    mockStore = {
+      select: jasmine
+        .createSpy('select')
+        .and.returnValues(
+          of([{ id: 0, text: 'foo', completed: false }]),
+          of('')
+        ),
+      dispatch: jasmine.createSpy('dispatch')
+    };
 
-      TestBed.configureTestingModule({
-        imports: [FormsModule, MaterialModule, NoopAnimationsModule],
-        providers: [{ provide: Store, useValue: mockStore }],
-        schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
-        declarations: [TodoListComponent]
-      }).compileComponents();
-    })
-  );
+    TestBed.configureTestingModule({
+      imports: [FormsModule, MaterialModule, NoopAnimationsModule],
+      providers: [{ provide: Store, useValue: mockStore }],
+      schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
+      declarations: [TodoListComponent]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TodoListComponent);

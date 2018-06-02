@@ -5,7 +5,7 @@ import {
   ElementRef,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { take, filter } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
@@ -60,7 +60,10 @@ export class TodoListComponent implements OnInit {
    */
   public add(): void {
     this.formInput$
-      .pipe(take(1), filter(input => input.length > 0))
+      .pipe(
+        take(1),
+        filter(input => input.length > 0)
+      )
       .subscribe(input => {
         const item: Todo = { id: null, text: input, completed: false };
         this.store.dispatch({ type: TodosActionTypes.add, payload: item });

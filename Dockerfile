@@ -3,7 +3,7 @@
 #
 
 # Pull node base image
-FROM mhart/alpine-node:8.9
+FROM mhart/alpine-node:8
 
 # Create app directory
 RUN mkdir -p /usr/src/app

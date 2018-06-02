@@ -19,6 +19,6 @@ jobs:
           paths:
             - node_modules
       - run: npm run lint
-      - run: npm run test -- --single-run --code-coverage --no-progress
-      - run: npm run e2e -- --no-progress
+      - run: npm run test -- --watch false --code-coverage
+      - run: npm run e2e
       - run: npm run coverage
